@@ -46,7 +46,7 @@ impl FromStr for Type {
 
 #[derive(Parser, Debug)]
 struct Cli {
-    /// Export Type
+    /// Export Type (svg, png, txt)
     #[arg(short, long = "type", default_value = "svg")]
     type_: Type,
     /// Plantuml server url
