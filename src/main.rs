@@ -86,6 +86,7 @@ async fn export(client: Client, path: PathBuf, url: String, type_: Type) -> Resu
     uml.read_to_string(&mut uml_str).await?;
     let encoded = encode_plantuml_deflate(uml_str).map_err(|e| anyhow!("{e:?}"))?;
     let url = format!("{}/{}/{encoded}", url, type_);
+    debug!("url: {url}");
     let img = client.get(url).send().await?.bytes().await?;
     let out_path = make_output_path(path, type_)?;
     info!("Writting to {} ...", out_path.display());
